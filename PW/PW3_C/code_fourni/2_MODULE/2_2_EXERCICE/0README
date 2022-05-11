@@ -1,0 +1,7 @@
+Écrire les fichiers ImageMono.h, main.c, ImageMono.c
+
+La correction est fournie pour comparer avec votre travail, Mais
+ne la regardez qu'une fois votre propre implémentation terminée.
+
+Pour compiler :
+$ make

@@ -1,0 +1,3 @@
+Q. Compilez en ignorant les warnings et en ne regardant que les erreurs. Quel appel dans main.c est impossible ?
+
+R. L'appel de la fonction g est impossible dans le main.c à cause de son statut de fonction static.

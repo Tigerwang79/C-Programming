@@ -1,0 +1,11 @@
+Q. Notez quelles constantes sont concernées par un warning, et expliquez.
+
+R. Les constantes concernées par un warning sont les variables non-globale et non-static 'd' 'e'.
+
+Q. Au fait, pourquoi définir une constante static dans une fonction n’a pas d’intérêt ?
+
+R. Elle n'a pas d'intérêt car l'attribut static rend la variable visible que dans la fonction où elle est appelée mais ne se réinitialise pas à chaque appel de la fonction.
+
+Q. Essayez d’affecter chacune des 5 constantes et regardez les messages du compilateur.
+
+R. On est bloqué par le compilateur lors d'un changement de valeur aux constantes.

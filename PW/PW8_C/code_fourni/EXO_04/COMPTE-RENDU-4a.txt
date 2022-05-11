@@ -1,0 +1,27 @@
+			************ EXERCICE 4a ************
+			
+Affichage des threads de l'EX4a :
+
+=======================================================================================
+=======================================================================================
+
+Thread initial d'identite 140323055089472
+
+ -> Thread de tid 140323046692608, la valeur du pointeur (p) =  et la valeur du pointé (*p) = 3
+
+ -> Thread de tid 140323055085312, la valeur du pointeur (p) =  et la valeur du pointé (*p) = 3
+
+ -> Thread de tid 140323038299904, la valeur du pointeur (p) =  et la valeur du pointé (*p) = 3
+
+Fin thread de tid 140323055085312
+
+Fin thread de tid 140323046692608
+
+Fin thread de tid 140323038299904
+
+Fin thread principal
+
+=======================================================================================
+=======================================================================================
+
+Si je n'ai pas fais d'erreur dans la formation du code alors on remarque que la valeur du pointeur (p) est nulle.

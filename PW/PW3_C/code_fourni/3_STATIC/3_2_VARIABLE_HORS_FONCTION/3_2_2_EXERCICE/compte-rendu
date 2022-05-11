@@ -1,0 +1,3 @@
+Q. Compilez en ignorant les warnings et en ne regardant que les erreurs. Quel accès dans main.c échoue ?
+
+R. Même histore que l'exercice 3.1, l'accès dans le main.c à la variable s échoue à cause de sa définition en tant que variable static.

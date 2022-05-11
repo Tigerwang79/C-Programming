@@ -1,0 +1,55 @@
+Juste pour illustrer le problème lorsque deux .h ont mutuellement
+besoin l'un de l'autre.
+Le code est réduit au strict minimum pour se focaliser sur le
+problème.
+
+Ce n'est pas un problème fréquent, et quand cela arrive ce n'est
+pas toujours simple de s'en sortir.
+
+
+Voici ce que donne main.c si on remplace les #include par
+le contenu des .h :
+-----------------------------------------------------------------
+   == inclusion de toto.h dans main.c
+01 #ifndef TOTO_H
+02 #define TOTO_H
+03 
+       == inclusion de titi.h dans toto.h
+04     #ifndef TITI_H
+05     #define TITI_H
+06 
+            == inclusion de toto.h dans titi.h (le ifndef échoue)
+07         #ifndef TOTO_H
+08         #define TOTO_H
+               == code ignoré car TOTO_H est déjà défini (cf. ligne 2)
+09             ...
+10         #endif
+11 
+12     typedef int myInt;      // création d'un alias pour int
+13     void f(myFloat f);
+14 
+15     #endif
+16 
+17 typedef float myFloat;      // création d'un alias pour float
+18 void g(myInt i);
+19 
+20 #endif
+-----------------------------------------------------------------
+
+Et on voit que la ligne 13 est incorrecte car myFloat n'est pas encore connu
+
+Mettre les #include avant les #ifndef ne résout rien : soit c'est
+le même problème, soit il y a des inclusions infinies.
+
+Voici le résultat de "gcc -E main.c"
+-----------------------------------------------------------------
+typedef int myInt;
+void f(myFloat f);
+
+typedef float myFloat;
+void g(myInt i);
+
+int main()
+{
+    return 0;
+}

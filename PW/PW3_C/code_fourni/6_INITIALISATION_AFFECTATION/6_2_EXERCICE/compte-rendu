@@ -1,0 +1,11 @@
+Q. Quelles variables sont concernées par des warnings du compilateur et pourquoi ?
+
+R. Les variables concernées par des warnings du compilateur sont les variables non static 'd' et 'e'.
+
+Q. Quelles variables ne sont pas concernées par des warnings du compilateur et pourquoi ?
+
+R. Ce sont les variables 'a','b' et 'c'.
+
+Q.L’affichage des cinq variables est-il celui attendu ?
+
+R. Oui c'est celui attendu.

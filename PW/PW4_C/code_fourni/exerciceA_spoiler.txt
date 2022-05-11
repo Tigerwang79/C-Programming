@@ -1,0 +1,102 @@
+Avertissement : faites d'abord l'exercice tout seul avant de
+comparer votre analyse avec celle de ce fichier.
+
+
+
+SPOILER
+|||||||
+vvvvvvv
+
+Les fichiers exoA_1_test et exoA_3_test sont les mêmes. Le premier a
+été généré par des fonctions bas niveau, et le second par des
+fonctions haut niveau. Hormis que les unes sont bufferisées et les
+autres non, leurs fonctionnements sont identiques.
+
+
+Etude de  exoA_1_test
+=====================
+
+$ ls -l exoA_1_test 
+-rw-r--r-- 1 subrenat subrenat 2 sept. 26 11:04 exoA_1_test
+                               ^
+
+Le fichier a été écrit en mode texte, autrement dit en une suite
+de caractères lisible par un humain (i.e. par un éditeur de texte).
+
+Ce n'est donc pas le nombre 12 qui est écrit dans le fichier mais les
+caractères '1' et '2'.
+Et en effet le fichier a bien une taille de 2 octets.
+
+D'un point informatique, dans le fichier il y a les code ASCII des
+caractères '1' et '2', autrement dit le premier octet vaut 49 et le
+second vaut 50 (cf. la commande "man 7 ascii").
+
+Un éditeur de texte ne vous affichera pas ces valeurs car justement
+son rôle est de vous afficher la traduction visuelle des codes ASCII.
+
+Pour voir les valeurs numériques des octets, il faut un programme
+dédié qu'on appelle un dumper comme od, hexdump ou hd.
+
+$ od -Ad -w10 -t d1z exoA_1_test 
+0000000   49   50                                          >12<
+0000002
+- Colonne de gauche : position des octets dans le fichier (en base 10)
+- 10 colonnes suivantes : valeurs des octets (en base 10)
+- dernière colonne : interprétation des octets en ASCII si possible
+(essayez cette commande sur votre fichier source, puis sur votre
+fichier executable)
+
+$ od -Ad -w10 -t x1z exoA_1_test 
+0000000 31 32                          >12<
+0000002
+Même chose que ci-dessus si ce n'est que les valeurs des octets sont en
+hexadécimal.
+
+"hexdump -C exoA_1_test" et "hd exoA_1_test" sont similaires si ce n'est
+qu'il y a 16 octets par ligne et que les positions (colonne de gauche)
+sont en hexadécimal.
+
+Dans tous les cas on voit qu'il y a deux octets et que les valeurs
+sont celles attendues.
+
+
+
+Etude de  exoA_2_test
+=====================
+
+$ ls -l exoA_2_test 
+-rw-r--r-- 1 subrenat subrenat 4 sept. 26 11:04 exoA_2_test
+                               ^
+Le fichier est écrit en mode binaire, autrement dit dans le fichier
+il y a la représentation mémoire de l'entier (un int).
+Sur ma machine un int est codé sur 4 octets et la taille du
+fichier est bien de 4 octets.
+Si l'on avait écrit un long, il y aurait eu 8 octets.
+
+Regarder un tel fichier avec un éditeur de texte n'a pas de sens car
+le programme va essayer d'interpréter les 4 octets comme autant
+de codes ASCII et le résultat ne voudra rien dire (essayez pour voir).
+
+Regardons les valeurs des 4 octets :
+$ od -Ad -w10 -t d1z exoA_2_test
+0000000   12    0    0    0                                >....<
+- Notez qu'il n'a pas réussi à interprêter les octets
+  comme des code ASCII (colonne de droite) ce qui est logique
+
+$ od -Ad -w10 -t x1z exoA_2_test
+0000000 0c 00 00 00                    >....<
+0000004
+
+Ma machine stocke les nombres en "little endian" (comme si on écrivait
+nos nombre à l'envers) autrement dit en premier les octets de poids
+faible.
+La formule de calcul est la suivante pour avoir la valeur finale :
+  octet1 * 16^0 + octet2 * 16^1 + octet3 * 16^2 + octet4 * 16^3
+soit ici :
+  12 * 16^0 + 0 * 16^1 + 0 * 16^2 + 0 * 16^3
+  et donc trivialement 12
+
+Note : en big endian les octets sont dans l'ordre "normal" (i.e. les octets
+de poids fort en premier, comme les nombres qu'on a l'habitude de manipuler).
+Et la formule est :
+  octet1 * 16^3 + octet2 * 16^2 + octet3 * 16^1 + octet4 * 16^0

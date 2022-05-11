@@ -1,0 +1,24 @@
+Q. Pourquoi la commande suivante n'a que peu d'intérêt :
+$ ls > result | less
+
+R. Parce que la commande ls envoie déjà toute les informations dans le fichier result et que donc la commande less sert à rien ici.
+
+Q. De même pour la commande :
+$ ls | less > result
+
+R. Pas trop d'idée pour celle-là à part le fait que less sert à faire de la pagination or dans cette commande on redirige less alors que ce serait result qui devrait être redirigé afin d'avoir une pagination.
+
+Q. Pourquoi la commande suivante est beaucoup plus intéressante :
+$ ls 2> erreurs | less
+
+R. Ici on fait une redirection des messages erreurs afin de laisser que les messages normaux qui seront paginés par less.
+
+Q. Quelles sont les différences entre les deux commandes suivantes ?
+$ ls > result 2> erreurs
+$ ls 2> erreurs > result
+
+R. Selon moi aucune on ne fait qu'intervertir identiquement les appelles des commandes.
+
+Q. Comment fait-on pour rediriger la sortie erreur dans un tube (i.e. avec un |) ?
+
+R. Pas d'idée.

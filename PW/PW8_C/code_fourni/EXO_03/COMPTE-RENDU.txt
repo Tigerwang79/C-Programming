@@ -1,0 +1,29 @@
+			************ EXERCICE 3 ************
+
+Affichage des pid des threads de l'EX3 :
+
+=======================================================================================
+=======================================================================================
+
+Thread initial d'identite 139974452123456
+
+ -> Thread de tid 139974443726592
+
+ -> Thread de tid 139974452119296
+
+ -> Thread de tid 139974435333888
+
+Fin thread de tid 139974452119296
+
+Fin thread de tid 139974443726592
+
+Fin thread de tid 139974435333888
+
+Fin thread principal
+
+=======================================================================================
+=======================================================================================
+
+Contre toute attente les threads affichent un pid différent pour chaque.
+Je ne saurais dire pourquoi les threads ont un pid différent, je dois sûrement avoir
+une mauvaise manipulation des threads dans mon code?

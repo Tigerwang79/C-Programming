@@ -1,0 +1,11 @@
+Q. Pourquoi le programme dit-il que la variable FOO n’existe pas ?
+
+R. Ne comprenant pas pourquoi elle n'était pas visible alors qu'on lui avait donné une valeur, je suis allé chercher et j'ai découvert qu'un fichier écrit en c ne le voyait pas de base. Il faut pouvoir éxecuter des commandes afin de la voir.
+
+Q. Créez une variable BAR initialisée à 15 pour que votre programme la détecte.
+
+Lancez une autre console, et exécutez votre programme toujours sur la variable BAR. Pourquoi n’est-elle
+plus visible ? Que faudrait-il faire pour que cette variable soit d´efinie automatiquement dans toutes les
+consoles ?
+
+R. Elle n'est plus visible car la définition est tout simplement local donc dans une autre console il est tout à fait normal de pas la voir. Et une méthode pour que cette variable soit présente sur toutes les consoles serait de la définir comme global dans un fichier.

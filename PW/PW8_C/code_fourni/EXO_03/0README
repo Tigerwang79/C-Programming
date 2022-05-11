@@ -1,0 +1,27 @@
+Ne pas oublier de tester chaque retour de fonction et de déclencher
+un assert en cas d'erreur
+
+
+Il faut faire l'édition de liens avec l'option :
+     -pthread
+  ou -lpthread
+
+La première est conseillée car elle peut se mettre n'importe où dans
+la ligne de compilation. Exemples :
+
+$ gcc -Wall -Wextra -pedantic -std=c99 exo3.c -pthread
+# ok
+
+$ gcc -Wall -Wextra -pedantic -std=c99 -pthread exo3.c
+# ok
+
+$ gcc -Wall -Wextra -pedantic -std=c99 exo3.c -lpthread
+# ok
+
+$ gcc -Wall -Wextra -pedantic -std=c99 -lpthread exo3.c
+# erreur fonctions inconnues
+
+Il y a des différences, entre les deux options, dans l'exécutable fabriqué.
+Et il semble que "-pthread" soit moins portable que "-lpthread"~: "-phread"
+serait propre à gcc.
+Ceci dit, peu importe pour nous dans le cadre de ce tp.

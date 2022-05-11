@@ -1,0 +1,3 @@
+Pour compiler~:
+$ ./compile.sh
+Il aurait état plus élégant d'avoir un Makefile.
