@@ -1,0 +1,22 @@
+Dans structure.c, la fonction "moyenne" ne pose pas de problème :
+- elle ne fait que lire l'image sans la modifier, donc le paramètre est const
+
+Dans stucture_optimise.c c'est différent. Pour des raisons d'efficacité
+on stocke le calcul de la moyenne dans une variable ; ainsi si on appelle
+une seconde fois la fonction, il est inutile de reparcourir le tableau,
+il suffit de lire le contenu de la variable.
+Question : est-ce que le calcul de la moyenne modifie l'image ?
+- oui : on modifie un champ de la structure donc l'image est modifiée
+        donc le paramètre ne peut pas être const
+- non : calculer la moyenne d'un tableau n'a jamais modifier le tableau ;
+        la variable intermédiaire ne fait pas partie de l'image. Donc
+	le paramètre doit être const.
+Les deux points de vue se défendent :
+- le premier point de vue est celui du compilateur
+- le second est celui de l'humain.
+C'est le second point de vue qui importe :
+- donc paramètre const
+Mais le compilateur a sa propre vision et ne compilera pas.
+On est dans une impasse ?
+Il faut trouver une solution pour garder le paramètre const mais
+pouvoir le modifier quand même.

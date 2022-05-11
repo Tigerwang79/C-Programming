@@ -1,0 +1,28 @@
+Voici un exemple de singleton.
+
+Le singleton est un design pattern (patron de conception) classique
+et facile à mettre en oeuvre.
+
+Le principe est qu'un programme manipule un objet qui doit absolument
+être en unique exemplaire. C'est à dire qu'il ne doit être créé qu'une
+seule fois et ensuite c'est toujours le même objet qu'on utilise.
+
+Et plus précisément, cet objet est créé la première fois où on en
+a besoin. Lorsqu'on le réutilise, on se sert de l'objet précédemment
+créé.
+
+Le problème est donc de s'assurer de cette cohérence. Et notamment ce
+n'est pas de la responsabilité de l'utilisateur de gérer cela, tout
+simplement parce qu'à un moment donné il se tromperait (par exemple en
+créant deux fois l'objet).
+
+Il faut que tout soit transparent pour l'utilisateur : lorsqu'il
+a besoin de l'objet, il le demande sans se préoccuper de savoir
+s'il existe déjà ou non.
+
+Bref on encapsule cette demande dans une méthode qui elle s'assure
+du bon fonctionnement.
+
+
+Nous allons prendre comme exemple pédagogique un objet
+qui est une chaîne de caractères.

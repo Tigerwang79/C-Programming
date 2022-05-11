@@ -1,0 +1,28 @@
+L'utilisation du générateur aléatoire avec la fonction "rand()" implique
+quelques subtilités.
+
+La première assez légère est que "rand()" renvoie un nombre entre 0 et
+RAND_MAX (bornes incluses). Or généralement on désire tirer un nombre
+aléatoire entre deux bornes (par exemple entre 5 et 10). Cela nécessite
+un petit calcul, pas très compliqué mais toujours pénible à faire.
+Donc nous allons encapsuler ce code dans la fonction :
+   int getAlea(int min, in max);
+C'est très classique.
+
+La seconde subtilité est plus délicate.
+Si on appelle "rand()" sans précaution, chaque fois qu'on lance
+le programme on obtient toujours le même nombre (chez moi c'est 1804289383).
+Au début du programme, et une seule fois, il faut appeler la fonction
+"srand()" pour initialiser le générateur aléatoire de manière différente
+chaque fois.
+Nous passons sous silence le paramètre à passer à cette fonction.
+Ce qui nous intéresse ici est de ne pas oublier d'appeler "srand()"
+et de ne l'appeler qu'une seule fois.
+
+
+Nous allons écrire trois versions d'une bibliothèque qui cache
+à l'utilisateur la complexité du générateur aléatoire.
+Solution 1 : code simple à écrire mais sujet à une utilisation erronnée
+Solution 2 : pallie partiellement le problème de la solution 1, et on
+             introduit la notion de singleton
+Solution 3 : qui assure une utilisation sans risque d'erreur

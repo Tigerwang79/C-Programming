@@ -1,0 +1,25 @@
+L'utilitaire "valgrind" détecte, lors de l'exécution de votre programme,
+les utilisations erronnées de le mémoire (essentiellement dynamique) :
+- oubli de désallocation
+- lecture d'une zone mémoire non initialisée
+- écriture ou lecture au-delà de la zone allouée (buffer overflow)
+- double désallocation d'une zone mémoire
+
+Les messages sont très précis, mais il faut compiler avec l'option "-g"
+
+Pour un oubli de désallocation, il indique le fichier et la ligne où
+eu lieu l'allocation.
+
+Pour une lecture/écriture au-delà de la zone allouée, il indique :
+- la ligne où lieu l'accès erroné
+- de combien d'octets on dépasser la zone allouée
+- le fichier et la ligne où eu lieu l'allocation
+
+valgrind donne des informations très précises sur les erreurs
+mémoire. En revanche il fait fortement chuter les performances
+du programme qu'il analyse.
+
+Les différentes erreurs sont illustrées dans les codes source
+de ce répertoire.
+Les explications et illustrations sont écrites directement
+dans les fichiers source.

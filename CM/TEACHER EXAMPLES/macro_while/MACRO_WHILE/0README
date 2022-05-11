@@ -1,0 +1,87 @@
+Vous avez peut-être déjà vu une macro fonction ressemblant à :
+
+#define F(p1, p2) \
+    do { \
+        // code macro \
+    } while (0)
+
+C'est a priori stupide puisque par définition on ne passe qu'une et
+seule fois dans la boucle. Donc autant supprimer le do et le while.
+Si des programmeurs expérimentés ont écrit ce code, il y a certainement
+une raison.
+
+Illustrons sur une macro qui affiche plusieurs fois une chaîne.
+(note : une fonction aurait été bien plus adéquate, notamment pour la
+vérification des types).
+
+Version 1 (incorrecte)
+#define REPETER(s, n) \
+    { \
+        printf("(%d) =>", n);         \
+        for (int i = 0; i < n; i++) \
+            printf("%s", s); \
+        printf("<=\n"); \
+    }
+
+Version 2 (correcte)
+#define REPETER(s, n) \
+    do { \
+        printf("(%d) =>", n);         \
+        for (int i = 0; i < n; i++) \
+            printf("%s", s); \
+        printf("<=\n"); \
+    } while(0)
+
+En fait l'intérêt est que la deuxième macro définit une instruction alors
+que la première définit un bloc d'instructions.
+Et un bloc et une instruction ne sont pas équivalent dans ce cas :
+- le "do ... while(0)" est incomplet : il manque le ';' pour avoir
+  une instruction qui compile
+- le "{ ... }" est complet et compile directement
+
+Le problème arrive avec un if. Lorsqu'il n'y qu'une seule instruction,
+les accolades sont facultatives. Par exemple :
+    if (1 == 1)
+        printf("aa");
+    else
+        printf("bb);
+
+Avec la macro, on a envie d'écrire :
+    if (1 == 1)
+        REPETER("aa", 5);
+    else
+        REPETER("bb", 5);
+ 
+Avec la première macro le code après passage du préprocesseur est :
+    if (1 == 1)
+    {
+        // code macro
+    }
+    ;   <== le problème est là
+    else
+        ...
+Dans la partie "then" il y un bloc suivi d'un ';' (càd une instruction
+vide, mais une instruction tout de même) ; c'est syntaxiquement incorrect
+s'il y a un "else" par la suite.
+Avec le "do while" il n'y a pas de problème car le ';' termine correctement
+l'instruction.
+
+Si REPETER avait été une vraie fonction, il n'y aurait pas eu de problème.
+Dans le cas de la version 1, on ne peut pas imposer au programmeur de
+ne pas mettre de ';' à la fin de l'appel de la macro.
+De même on ne peut pas lui imposer d'englober son appel dans des
+accolades.
+
+Cf. fichiers macro_incorrecte.h et main_incorrect.c pour illustrer le
+dysfonctionnement de la version 1.
+Cf. fichiers macro_correcte.h et main_correct.c pour voir le fonctionnement
+correct.
+
+Note : "gcc -E" permet de visualiser l'expansion des macros.
+
+
+
+Il est également fourni un exemple plus concret et conséquent avec
+les fichiers :
+- memory.h
+- main_memory.c

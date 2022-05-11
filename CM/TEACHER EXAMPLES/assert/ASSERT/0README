@@ -1,0 +1,10 @@
+Les assertions servent à détecter des erreurs et non pas à les gérer.
+Lorsqu'on détecte une erreur, on stoppe le programme.
+Les assert ne servent donc qu'en fasse de debuggage et deviennent
+inutiles lorsque le programme est correcte.
+
+La gestion des erreurs se fait généralement avec des exceptions
+
+
+Les fichiers myassert.h et myassert.c ne sont qu'une surcouche
+à assert avec des messages plus explicites.

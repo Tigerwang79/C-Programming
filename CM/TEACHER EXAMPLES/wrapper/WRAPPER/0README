@@ -1,0 +1,13 @@
+Un wrapper est une fonction visible du public et qui sert à appeler
+la vraie fonction qui fait le calcul.
+
+C'est souvent utilisé lorsqu'on fait de la récursivité.
+
+Intérêts :
+- permet de tester des cas limites si nécessaire
+- permet de masquer les paramètres propres à la récursivité qui
+  d'une pourraient être mal initialisés par l'utilisateur et d'autre
+  part n'intéresse absolument pas ce dernier.
+
+L'exemple à intérêt purement pédagogique calcule le produit des éléments
+d'un tableau.
